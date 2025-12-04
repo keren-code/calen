@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento: idioma, codificación y título de la pestaña -->
+    <meta charset="UTF-8">
+    <title>C.P. Juan Pérez | Link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CDN de íconos Font Awesome (aquí se cargan todos los íconos que se usan abajo) -->
+    <!-- Si quieres usar otra versión/cdn, cámbiala aquí. -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> <!-- [web:44][web:47][web:51] -->
+
+    <style>
+        /* ==========================
+           RESETEO BÁSICO Y FUENTE
+           ========================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        /* Fondo general de la página (degradado azul-verde) */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #13547A, #80D0C7);
+            /* Cambia estos colores si quieres otro degradado */
+            color: #0f172a;
+        }
+
+        /* Tarjeta central tipo Linktree (contenedor principal) */
+        .card {
+            width: 100%;
+            max-width: 430px;        /* Ancho máximo en desktop */
+            background: rgba(15, 23, 42, 0.96); /* fondo oscuro tipo panel */
+            border-radius: 24px;
+            padding: 28px 22px 24px;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.6);
+            color: #e5e7eb;
+        }
+
+        /* ==========================
+           FOTO / AVATAR
+           ========================== */
+        .avatar-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        /* Aro con degradado alrededor de la foto */
+        .avatar-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            padding: 3px;
+            background: conic-gradient(from 180deg, #22c55e, #06b6d4, #4f46e5, #22c55e);
+        }
+
+        /* Aquí va la foto del contador */
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            /* Cambia la URL por la foto real del contador */
+            background: #0f172a url("https://via.placeholder.com/300x300.png?text=CP") center/cover no-repeat;
+            border: 3px solid #020617;
+        }
+
+        /* ==========================
+           TEXTOS DE CABECERA
+           ========================== */
+        .header-text {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        /* Nombre principal */
+        .header-text h1 {
+            font-size: 1.4rem;
+            letter-spacing: 0.03em;
+        }
+
+        /* La parte dentro de <span> se pinta en verde para resaltar "C.P." */
+        .header-text h1 span {
+            color: #22c55e;
+        }
+
+        /* Subtítulo: especialidad del contador */
+        .header-text h2 {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: #cbd5f5;
+            margin-top: 4px;
+        }
+
+        /* Mini descripción / frase de confianza */
+        .header-text p {
+            font-size: 0.82rem;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+
+        /* ==========================
+           BOTÓN PRINCIPAL (CTA)
+           ========================== */
+        .primary-cta {
+            display: block;
+            width: 100%;
+            padding: 13px 16px;
+            margin: 4px 0 14px;
+            border-radius: 999px; /* full rounded */
+            border: none;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #0f172a;  /* texto oscuro sobre degradado claro */
+            background: linear-gradient(135deg, #22c55e, #06b6d4); /* verde → celeste */
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.28);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+        }
+
+        /* Efecto hover del botón principal */
+        .primary-cta:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
+            box-shadow: 0 14px 40px rgba(34, 197, 94, 0.38);
+        }
+
+        /* Ícono dentro del botón principal (calendario) */
+        .primary-cta i {
+            margin-right: 8px;
+        }
+
+        /* ==========================
+           LISTA DE ENLACES
+           ========================== */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;            /* espacio entre botones */
+            margin-bottom: 18px;
+        }
+
+        /* Cada tarjeta/enlace de servicio */
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 14px;
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            text-decoration: none;
+            color: #e5e7eb;
+            font-size: 0.9rem;
+            transition: background 0.18s ease, transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        /* Lado izquierdo del link (icono + textos) */
+        .link-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Circulito con ícono al inicio del enlace */
+        .link-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            color: #22c55e;
+            font-size: 0.95rem;
+        }
+
+        /* Texto principal del enlace (nombre del servicio) */
+        .link-label-main {
+            font-weight: 500;
+        }
+
+        /* Subtexto del enlace (detalle corto) */
+        .link-label-sub {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        /* Flechita chevron del lado derecho */
+        .link-chevron {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        /* Hover de los enlaces de servicio */
+        .link-item:hover {
+            background: rgba(30, 64, 175, 0.95);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.6);
+        }
+
+        /* ==========================
+           REDES SOCIALES (ICONOS)
+           ========================== */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        /* Botón redondo de cada red social */
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background 0.18s ease, transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        /* Hover de redes sociales */
+        .social-btn:hover {
+            transform: translateY(-1px) scale(1.05);
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.7);
+        }
+
+        /* Colores por red (puedes ajustar si quieres) */
+        .social-btn.whatsapp { color: #22c55e; }
+        .social-btn.linkedin { color: #0ea5e9; }
+        .social-btn.facebook { color: #3b82f6; }
+
+        /* Instagram con degradado típico */
+        .social-btn.instagram {
+            background: radial-gradient(circle at 30% 30%, #fbbf24, #ec4899, #6366f1);
+            color: #f9fafb;
+            border: none;
+        }
+
+        .social-btn.tiktok {
+            color: #f97316;
+        }
+
+        /* ==========================
+           FOOTER / DATOS DE CONTACTO PEQUEÑOS
+           ========================== */
+        .footer-text {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6b7280;
+        }
+
+        .footer-text a {
+            color: #a5b4fc;
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==========================
+           RESPONSIVE (MÓVIL)
+           ========================== */
+        @media (max-width: 480px) {
+            .card {
+                margin: 14px;
+                padding: 22px 16px 18px;
+            }
+
+            .header-text h1 {
+                font-size: 1.28rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TARJETA COMPLETA (todo el contenido tipo Linktree) -->
+<div class="card">
+
+    <!-- FOTO DE PERFIL -->
+    <div class="avatar-wrapper">
+        <div class="avatar-ring">
+            <div class="avatar"></div> <!-- Cambia el fondo de .avatar (en CSS) por la foto real -->
+        </div>
+    </div>
+
+    <!-- NOMBRE, SUBTÍTULO Y FRASE -->
+    <div class="header-text">
+        <!-- Cambia "Juan Pérez" por el nombre del contador -->
+        <h1><span>C.P.</span> Juan Pérez</h1>
+
+        <!-- Cambia especialidad y enfoque -->
+        <h2>Contador Público · Impuestos & Finanzas</h2>
+
+        <!-- Cambia el texto de la frase comercial -->
+        <p>Asesoría contable clara, para emprendedores y PYMES que necesitan orden y tranquilidad.</p>
+    </div>
+
+    <!-- BOTÓN PRINCIPAL: suele ir a WhatsApp o agenda online -->
+    <!-- Reemplaza el número de wa.me por el tuyo (con código de país) -->
+    <a class="primary-cta" href="https://wa.me/99999999999" target="_blank" rel="noopener">
+        <i class="fa-solid fa-calendar-check"></i>
+        Agendar consulta por WhatsApp
+    </a>
+
+    <!-- LISTA DE ENLACES DE SERVICIOS / RECURSOS -->
+    <div class="links-list">
+
+        <!-- ENLACE 1: Declaración de impuestos -->
+        <!-- Cambia href="#" por el enlace real (formulario, página, PDF, etc.) -->
+        <a class="link-item" href="#" target="_blank">
+            <div class="link-item-left">
+                <!-- Ícono del servicio (puedes cambiar la clase de Font Awesome) -->
+                <div class="link-icon">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <div>
+                    <!-- Título del servicio -->
+                    <div class="link-label-main">Declaración de impuestos</div>
+                    <!-- Descripción corta del servicio -->
+                    <div class="link-label-sub">Personas naturales y PYMES</div>
+                </div>
+            </div>
+            <!-- Flecha a la derecha -->
+            <span class="link-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <!-- ENLACE 2: Contabilidad mensual -->
+        <a class="link-item" href="#" target="_blank">
+            <div class="link-item-left">
+                <div class="link-icon">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div>
+                    <div class="link-label-main">Contabilidad mensual</div>
+                    <div class="link-label-sub">Paquetes fijos para empresas</div>
+                </div>
+            </div>
+            <span class="link-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <!-- ENLACE 3: Asesoría a emprendedores -->
+        <a class="link-item" href="#" target="_blank">
+            <div class="link-item-left">
+                <div class="link-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div>
+                    <div class="link-label-main">Asesoría a emprendedores</div>
+                    <div class="link-label-sub">Elige régimen correcto y evita multas</div>
+                </div>
+            </div>
+            <span class="link-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <!-- ENLACE 4: Descarga de CV / Brochure -->
+        <a class="link-item" href="#" target="_blank">
+            <div class="link-item-left">
+                <div class="link-icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div>
+                    <div class="link-label-main">Descargar CV / Brochure</div>
+                    <div class="link-label-sub">Perfil profesional y servicios</div>
+                </div>
+            </div>
+            <span class="link-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+    </div>
+
+    <!-- ICONOS DE REDES SOCIALES -->
+    <div class="social-row">
+        <!-- WhatsApp: cambia el número -->
+        <a class="social-btn whatsapp" href="https://wa.me/99999999999" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <!-- LinkedIn: pon aquí el perfil del contador -->
+        <a class="social-btn linkedin" href="https://www.linkedin.com/" target="_blank">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <!-- Facebook: URL de la fanpage o perfil profesional -->
+        <a class="social-btn facebook" href="https://www.facebook.com/" target="_blank">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <!-- Instagram: perfil profesional -->
+        <a class="social-btn instagram" href="https://www.instagram.com/" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <!-- TikTok (opcional) -->
+        <a class="social-btn tiktok" href="https://www.tiktok.com/" target="_blank">
+            <i class="fa-brands fa-tiktok"></i>
+        </a>
+    </div>
+
+    <!-- DATOS DE CONTACTO PEQUEÑOS ABAJO -->
+    <div class="footer-text">
+        <!-- Cambia ciudad y correo electrónico -->
+        <div>Lima, Perú · <a href="mailto:contacto@tucorreo.com">contacto@tucorreo.com</a></div>
+        <div>© 2025 C.P. Juan Pérez · Contador Público</div>
+    </div>
+</div>
+
+</body>
+</html>

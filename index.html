@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendarios 2026 – Venta por millar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font llamativa -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome para icono de WhatsApp -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      column-gap: 0;
+    }
+
+    /* Lado izquierdo */
+    .left {
+      padding: 40px 40px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffe082;
+      color: #5d3a00;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .tag span.dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ff6f00;
+    }
+
+    h1 {
+      font-size: 44px;
+      line-height: 1.05;
+      color: #111;
+      letter-spacing: 0.02em;
+    }
+
+    h1 span.year {
+      color: #ff4081;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      color: #555;
+      max-width: 540px;
+    }
+
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 8px 0 10px;
+    }
+
+    .badge {
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      background: #f3e5f5;
+    }
+
+    .badge.green {
+      background: #e0f7fa;
+      color: #006064;
+    }
+
+    .badge.orange {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .features-title {
+      margin-top: 6px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+    }
+
+    ul.features {
+      margin-top: 4px;
+      padding-left: 20px;
+      font-size: 15px;
+      color: #555;
+    }
+
+    ul.features li {
+      margin-bottom: 4px;
+    }
+
+    .price-box {
+      margin-top: 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 800;
+      color: #ff4081;
+    }
+
+    .price small {
+      font-size: 16px;
+      font-weight: 500;
+      color: #777;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .cta-row {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      background: #25d366;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .btn-whatsapp i {
+      font-size: 22px;
+    }
+
+    .cta-text {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Lado derecho CON slider mejorado */
+    .right {
+      position: relative;
+      background: radial-gradient(circle at top, #fff59d, #ff80ab);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 24px;
+    }
+
+    /* Slider modificado - SIN BORDES REDONDEADOS */
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      background: #fff;
+      cursor: pointer;
+      border-radius: 0;
+      z-index: 10;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.5s ease;
+    }
+
+    .slider.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* POPUP INICIAL del banner "LO NUEVO" */
+    .initial-popup-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .initial-popup-content {
+      position: relative;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    /* Banner inicial como popup */
+    .initial-banner {
+      background: linear-gradient(135deg, 
+        #FF0055, /* Rosa neón brillante */
+        #FF3300, /* Rojo anaranjado intenso */
+        #FFAA00  /* Amarillo dorado */
+      );
+      background-size: 200% 200%;
+      color: #FFFFFF;
+      padding: 25px 40px;
+      border-radius: 0;
+      font-weight: 900;
+      font-size: 24px;
+      text-align: center;
+      box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(255, 0, 85, 0.8),
+        0 0 80px rgba(255, 51, 0, 0.7),
+        0 0 100px rgba(255, 170, 0, 0.6);
+      border: 6px solid #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: gradientShift 3s ease infinite, pulseGlow 2s ease-in-out infinite alternate;
+      text-shadow: 
+        3px 3px 0 #000000,
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        0 0 30px rgba(255, 255, 0, 0.9);
+    }
+
+    .initial-banner span.highlight {
+      color: #FFFF00; /* Amarillo neón brillante */
+      font-weight: 900;
+      text-shadow: 
+        3px 3px 0 #000000,
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        0 0 40px #FF0,
+        0 0 50px #FF0,
+        0 0 60px #FF0;
+      animation: textGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    /* Botón de cerrar el popup inicial */
+    .close-popup-btn {
+      position: absolute;
+      top: -25px;
+      right: -25px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #FF0055;
+      border: 4px solid white;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(255, 0, 85, 0.5);
+      z-index: 101;
+      transition: all 0.3s ease;
+    }
+
+    .close-popup-btn:hover {
+      background: #FF3300;
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 10px 30px rgba(255, 51, 0, 0.7);
+    }
+
+    /* Banner pequeño SIN FONDO AZUL - Solo texto con efectos */
+    .small-banner {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      font-weight: 900;
+      font-size: 18px;
+      text-align: center;
+      z-index: 20;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+      text-shadow: 
+        2px 2px 0 #000000,
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        0 0 20px rgba(255, 255, 255, 0.8);
+      background: none; /* Sin fondo */
+      border: none; /* Sin borde */
+      box-shadow: none; /* Sin sombra de fondo */
+    }
+
+    .small-banner.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .small-banner span.highlight {
+      color: #FFFF00; /* Amarillo brillante */
+      font-weight: 900;
+      text-shadow: 
+        2px 2px 0 #000000,
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        0 0 25px #FF0,
+        0 0 35px #FF0;
+    }
+
+    /* Animaciones */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1);
+        box-shadow: 
+          0 15px 40px rgba(0, 0, 0, 0.6),
+          0 0 60px rgba(255, 0, 85, 0.8);
+      }
+      100% {
+        transform: scale(1.05);
+        box-shadow: 
+          0 15px 40px rgba(0, 0, 0, 0.6),
+          0 0 80px rgba(255, 0, 85, 0.9),
+          0 0 100px rgba(255, 51, 0, 0.8);
+      }
+    }
+
+    @keyframes textGlow {
+      0% {
+        text-shadow: 
+          3px 3px 0 #000000,
+          0 0 40px #FF0;
+      }
+      100% {
+        text-shadow: 
+          3px 3px 0 #000000,
+          0 0 50px #FF0,
+          0 0 60px #FF0,
+          0 0 70px #FF0;
+      }
+    }
+
+    .slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slides img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      cursor: zoom-in;
+      border-radius: 0;
+    }
+
+    .slides img.active {
+      opacity: 1;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+
+    .slider-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .slider-btn.prev { left: 15px; }
+    .slider-btn.next { right: 15px; }
+
+    /* Solo queda este bubble */
+    .bubble {
+      position: absolute;
+      font-size: 12px;
+      padding: 8px 11px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      color: #333;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transition: opacity 0.5s ease 0.3s;
+    }
+
+    .slider.visible ~ .bubble {
+      opacity: 1;
+    }
+
+    .bubble.bottom {
+      bottom: 18px;
+      left: 22px;
+    }
+
+    .bubble strong {
+      color: #ff4081;
+    }
+
+    /* BLOQUE DEL QR SUPER LLAMATIVO */
+    .qr-block {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .qr-sample {
+      max-width: 220px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .qr-text-strong {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ff4081;
+      text-transform: uppercase;
+    }
+
+    .qr-text-strong span.free {
+      background: #ff4081;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-left: 4px;
+    }
+
+    .qr-text-small {
+      font-size: 14px;
+      color: #444;
+      margin-top: 6px;
+    }
+
+    /* POPUP PARA PREVISUALIZACIÓN DE IMÁGENES */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+    }
+
+    .popup-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .popup-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 0;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .popup-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .popup-prev {
+      left: -80px;
+    }
+
+    .popup-next {
+      right: -80px;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: #333;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .popup-close:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+    }
+
+    .popup-counter {
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      padding: 8px 18px;
+      border-radius: 0;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .right {
+        order: -1;
+        padding: 34px 24px;
+        min-height: 500px;
+      }
+      
+      .initial-banner {
+        font-size: 20px;
+        padding: 20px 30px;
+        letter-spacing: 1.5px;
+      }
+      
+      .close-popup-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        top: -20px;
+        right: -20px;
+      }
+      
+      .small-banner {
+        top: 15px;
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      
+      .popup-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+      
+      .popup-prev {
+        left: 10px;
+      }
+      
+      .popup-next {
+        right: 10px;
+      }
+      
+      .popup-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
+      
+      .popup-counter {
+        bottom: 10px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        border-radius: 16px;
+      }
+      h1 {
+        font-size: 30px;
+      }
+      .subtitle {
+        font-size: 15px;
+      }
+      .left {
+        padding: 22px 18px 24px;
+      }
+      .cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .qr-block {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .qr-sample {
+        max-width: 190px;
+      }
+      
+      .slider {
+        max-width: 100%;
+        aspect-ratio: 4 / 5;
+      }
+      
+      .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+      
+      .initial-banner {
+        font-size: 16px;
+        padding: 15px 20px;
+        letter-spacing: 1px;
+        border-width: 4px;
+      }
+      
+      .close-popup-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        top: -15px;
+        right: -15px;
+      }
+      
+      .small-banner {
+        top: 10px;
+        font-size: 14px;
+        padding: 8px 16px;
+        letter-spacing: 1px;
+      }
+      
+      .btn-whatsapp {
+        padding: 12px 20px;
+        font-size: 15px;
+        gap: 10px;
+      }
+      
+      .btn-whatsapp i {
+        font-size: 20px;
+      }
+      
+      .bubble.bottom {
+        bottom: 10px;
+        left: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- Lado derecho con slider -->
+    <section class="right">
+      <!-- Popup inicial del banner "LO NUEVO" -->
+      <div class="initial-popup-overlay" id="initialPopup">
+        <div class="initial-popup-content">
+          <div class="initial-banner">
+            LO NUEVO <span class="highlight">PERFIL QR SOCIAL 2026</span> COMPLETAMENTE GRATIS
+          </div>
+          <button class="close-popup-btn" id="closeInitialPopup">&times;</button>
+        </div>
+      </div>
+      
+      <!-- Banner pequeño SIN FONDO - Solo texto -->
+      <div class="small-banner" id="smallBanner">
+        LO NUEVO <span class="highlight">PERFIL QR SOCIAL 2026</span> COMPLETAMENTE GRATIS
+      </div>
+      
+      <!-- Slider (inicialmente oculto) -->
+      <div class="slider" id="mainSlider">
+        <button class="slider-btn prev" aria-label="Imagen anterior">&#10094;</button>
+
+        <div class="slides">
+          <!-- Cambia las rutas src por tus imágenes reales de calendarios 2025 -->
+          <img src="22.png" alt="Calendario 2025 modelo 1" class="active" data-index="0">
+          <img src="22.png" alt="Calendario 2025 modelo 2" data-index="1">
+          <img src="22.png" alt="Calendario 2025 modelo 3" data-index="2">
+        </div>
+
+        <button class="slider-btn next" aria-label="Imagen siguiente">&#10095;</button>
+      </div>
+
+      <!-- Solo queda este bubble -->
+      <div class="bubble bottom">
+        Calendarios perfectos para <strong>empresas y negocios</strong>.
+      </div>
+    </section>
+
+    <!-- Lado izquierdo texto + CTA -->
+    <section class="left">
+      <div class="tag">
+        <span class="dot"></span>
+        Edición limitada 2026
+      </div>
+
+      <h1>
+        Calendarios <span class="year">2026</span><br />
+        venta por millar
+      </h1>
+
+      <p class="subtitle">
+        Muestra tu marca todo el año con calendarios 2026 impresos a todo color y
+        acompáñalos con un perfil QR Social profesional para tus redes y contacto.
+      </p>
+
+      <div class="highlights">
+        <span class="badge">Diseño profesional</span>
+        <span class="badge green">Impresión full color</span>
+        <span class="badge orange">Stock limitado</span>
+      </div>
+
+      <p class="features-title">Incluye:</p>
+      <ul class="features">
+        <li>Impresión full color en alta calidad.</li>
+        <li>Espacio para logo y datos de tu empresa.</li>
+        <li>Calendario completo 2026 listo para entregar.</li>
+      </ul>
+
+      <div class="price-box">
+        <div class="price">
+          S/ 950
+          <small>por millar de calendarios</small>
+        </div>
+      </div>
+
+      <p class="note">
+        Por la compra de tu millar de calendarios 2026 te llevas
+        <strong>COMPLETAMENTE GRATIS</strong> un <strong>código QR Social</strong>
+        enlazado a un perfil con tus redes, foto de perfil y datos de contacto.
+      </p>
+
+      <p class="note">
+        Mira este ejemplo de cómo se verá tu perfil QR Social:
+      </p>
+
+      <!-- QR clickeable con texto llamativo -->
+      <div class="qr-block">
+        <a href="indexperfil.html" target="_blank" style="text-decoration:none;">
+          <img src="qr_social_facebook_color.png"
+               alt="Ejemplo de código QR Social promocional"
+               class="qr-sample">
+        </a>
+
+        <div style="max-width:280px;">
+          <p class="qr-text-strong">
+            Tu perfil QR Social
+            <span class="free">GRATIS</span>
+          </p>
+          <p class="qr-text-small">
+            Haz clic o escanea el QR para abrir el <strong>indexperfil</strong> de muestra
+            y ver cómo tus redes sociales, foto y contacto se reúnen en un solo enlace.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <!-- ENLACE A WHATSAPP CON ICONO ORIGINAL -->
+        <a
+          class="btn-whatsapp"
+          href="https://wa.me/51976522603?text=Hola%2C%20vengo%20de%20tu%20web%20de%20calendarios%202026.%20Quiero%20informaci%C3%B3n%20para%20comprar%20un%20millar%20%28S%2F%20850%29%20y%20mi%20QR%20Social%20gratis."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-whatsapp"></i>
+          <span>Solicitar por WhatsApp</span>
+        </a>
+
+        <p class="cta-text">
+          Te llegará un mensaje de bienvenida y los pasos para hacer tu pedido.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- POPUP para previsualización de imágenes -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-content">
+      <button class="popup-close" id="popupClose">&times;</button>
+      <button class="popup-btn popup-prev" id="popupPrev">&#10094;</button>
+      <img class="popup-img" id="popupImg" src="" alt="Vista previa ampliada">
+      <button class="popup-btn popup-next" id="popupNext">&#10095;</button>
+      <div class="popup-counter" id="popupCounter">1 / 3</div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Elementos del popup inicial
+    const initialPopup = document.getElementById('initialPopup');
+    const closeInitialPopupBtn = document.getElementById('closeInitialPopup');
+    const smallBanner = document.getElementById('smallBanner');
+    const mainSlider = document.getElementById('mainSlider');
+    
+    // Elementos del slider
+    const slides = document.querySelectorAll('.slides img');
+    const prevBtn = document.querySelector('.slider-btn.prev');
+    const nextBtn = document.querySelector('.slider-btn.next');
+    const slider = document.querySelector('.slider');
+    let current = 0;
+
+    // Elementos del popup de imágenes
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popupImg');
+    const popupPrev = document.getElementById('popupPrev');
+    const popupNext = document.getElementById('popupNext');
+    const popupClose = document.getElementById('popupClose');
+    const popupCounter = document.getElementById('popupCounter');
+
+    // Función para cerrar el popup inicial
+    function closeInitialPopup() {
+      // Ocultar popup inicial con animación
+      initialPopup.style.opacity = '0';
+      initialPopup.style.transform = 'scale(0.9)';
+      
+      setTimeout(() => {
+        initialPopup.style.display = 'none';
+        
+        // Mostrar banner pequeño (SIN FONDO)
+        smallBanner.classList.add('visible');
+        
+        // Mostrar slider con animación
+        setTimeout(() => {
+          mainSlider.classList.add('visible');
+        }, 300);
+      }, 300);
+      
+      // Guardar en localStorage que ya se mostró el popup
+      localStorage.setItem('popupShown', 'true');
+    }
+
+    // Mostrar popup inicial solo si no se ha mostrado antes
+    if (!localStorage.getItem('popupShown')) {
+      // El popup ya está visible por defecto
+    } else {
+      // Si ya se mostró antes, mostrar directamente el slider y el banner pequeño
+      initialPopup.style.display = 'none';
+      smallBanner.classList.add('visible');
+      mainSlider.classList.add('visible');
+    }
+
+    // Event listener para cerrar el popup inicial
+    closeInitialPopupBtn.addEventListener('click', closeInitialPopup);
+
+    // También cerrar al hacer clic fuera del contenido
+    initialPopup.addEventListener('click', (e) => {
+      if (e.target === initialPopup) {
+        closeInitialPopup();
+      }
+    });
+
+    // Funciones del slider
+    function showSlide(index) {
+      slides.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+
+    // Abrir popup de imágenes
+    function openPopup(index) {
+      current = index;
+      popupImg.src = slides[current].src;
+      popupImg.alt = slides[current].alt;
+      updatePopupCounter();
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updatePopupCounter() {
+      popupCounter.textContent = `${current + 1} / ${slides.length}`;
+    }
+
+    function nextPopup() {
+      current = (current + 1) % slides.length;
+      popupImg.src = slides[current].src;
+      popupImg.alt = slides[current].alt;
+      updatePopupCounter();
+    }
+
+    function prevPopup() {
+      current = (current - 1 + slides.length) % slides.length;
+      popupImg.src = slides[current].src;
+      popupImg.alt = slides[current].alt;
+      updatePopupCounter();
+    }
+
+    function closeImagePopup() {
+      popup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Event listeners del slider
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prevSlide();
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nextSlide();
+    });
+
+    // Event listeners para imágenes del slider
+    slides.forEach((slide, index) => {
+      slide.addEventListener('click', () => {
+        openPopup(index);
+      });
+    });
+
+    // Event listener para el contenedor del slider
+    slider.addEventListener('click', (e) => {
+      if (e.target === slider || e.target.classList.contains('slides')) {
+        openPopup(current);
+      }
+    });
+
+    // Event listeners del popup de imágenes
+    popupPrev.addEventListener('click', prevPopup);
+    popupNext.addEventListener('click', nextPopup);
+    popupClose.addEventListener('click', closeImagePopup);
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closeImagePopup();
+      }
+    });
+
+    // Navegación con teclado
+    document.addEventListener('keydown', (e) => {
+      if (popup.classList.contains('active')) {
+        if (e.key === 'Escape') closeImagePopup();
+        if (e.key === 'ArrowLeft') prevPopup();
+        if (e.key === 'ArrowRight') nextPopup();
+      }
+    });
+
+    // Cambio automático de imágenes cada 5 segundos
+    let autoSlide = setInterval(nextSlide, 5000);
+
+    // Pausar el cambio automático al interactuar
+    slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    slider.addEventListener('mouseleave', () => {
+      autoSlide = setInterval(nextSlide, 5000);
+    });
+  </script>
+</body>
+</html>
